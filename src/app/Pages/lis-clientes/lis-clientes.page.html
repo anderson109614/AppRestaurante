@@ -1,0 +1,41 @@
+<ion-header>
+  
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button autoHide="false" (click)="regresarBTN()">
+        <ion-icon size="large" name="arrow-round-back"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button autoHide="false" (click)="regresarNuevo()">
+        <ion-icon size="large" name="person-add"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
+    <ion-title>Lista de Clientes</ion-title>
+  </ion-toolbar>
+  <!-- Searchbar with a cancel button and custom cancel button text -->
+<ion-searchbar showCancelButton="focus" (keyup)="checkCliente($event)" cancelButtonText="Custom Cancel"></ion-searchbar>
+</ion-header>
+
+<ion-content>
+  <table style="width: 100%;">
+    <tr style="width: 100%;" *ngFor="let cli of LisClientes">
+      <td style="width: 100%;">
+        <ion-card style="width: 100%;" (click)="selecCliente(cli)">
+        <ion-card-header>
+          <ion-card-subtitle>{{cli.Cedula}}</ion-card-subtitle>
+          <ion-card-title>{{cli.Nombre}} {{cli.Apellido}}</ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content>
+          {{cli.Direccion}}-{{cli.Telefono}}
+        </ion-card-content>
+      </ion-card>
+    </td>
+     
+  </tr>
+  </table>
+
+</ion-content>
