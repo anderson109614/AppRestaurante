@@ -62,4 +62,5 @@ export class HomePage {
     (<HTMLSelectElement>document.getElementById("txtDireccion")).value=this.ClienteUso.Direccion;
     (<HTMLSelectElement>document.getElementById("txtTelefono")).value=this.ClienteUso.Telefono;
   }
+  
 }
