@@ -9,9 +9,12 @@ import {LisClientesPageModule} from '../Pages/lis-clientes/lis-clientes.module';
 import {LisClientesPage} from '../Pages/lis-clientes/lis-clientes.page';
 import {NewClientesPageModule} from '../Pages/new-clientes/new-clientes.module';
 import {NewClientesPage} from '../Pages/new-clientes/new-clientes.page';
+import {LisProuctosPageModule} from '../Pages/lis-prouctos/lis-prouctos.module';
+import {LisProuctosPage} from '../Pages/lis-prouctos/lis-prouctos.page';
 @NgModule({
-  entryComponents:[LisClientesPage,NewClientesPage],
+  entryComponents:[LisClientesPage,NewClientesPage,LisProuctosPage],
   imports: [
+    LisProuctosPageModule,
     CommonModule,
     FormsModule,
     IonicModule,

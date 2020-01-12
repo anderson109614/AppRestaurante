@@ -1,3 +1,24 @@
-<ion-app>
-  <ion-router-outlet></ion-router-outlet>
-</ion-app>
+<div id="DivPagina">
+  <ion-app>
+    <ion-router-outlet></ion-router-outlet>
+  </ion-app>
+  
+</div>
+
+<div id="DivLogin" class="estiloBloqueo">
+  <div style="padding: 20px 20px 20px 20px ;">
+    <!-- <img src="../../assets/logo.png" alt="">-->
+    <ion-item>
+      <ion-label position="floating">Usuario</ion-label>
+      <ion-input id="txt-login-username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input id="txt-login-password" type="password"></ion-input>
+    </ion-item>
+    <label id="lbl_error"   style="color:#dc3545;display: none;font-size: 80%;" ></label>
+    <ion-button shape="round" color="success" expand="full" (click)="onClickLogin()">INICIAR</ion-button>
+  </div>
+
+
+</div>

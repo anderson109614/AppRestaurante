@@ -3,6 +3,7 @@ ob_start();
 include("../coneccion.php");
 $dbConn =  connect($db);
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    /*
     try {
         if (isset($_GET['est'])) {
             $sql = $dbConn->prepare("SELECT
@@ -36,40 +37,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     } catch (Exception $e) {
         echo 'Excepción capturada: ',  $e->getMessage(), "\n";
     }
+    */
 }
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    /*
+    
     try {
         //$input = $_POST;
         $input = (array) json_decode(file_get_contents('php://input'), TRUE);
-        $sql = "INSERT INTO prestamos_laboratorios(
-            id_laboratorio,
-            Fecha,
-            Descripcion
-        )
-        VALUES(
-            :id_laboratorio,
-            NOW(),
-            :Descripcion
-        )";
+        $sql = "INSERT INTO `factura_maestro`(`Fecha`, `Id_cliente`, `Total`)
+        VALUES(now(),:IdCliente,:total )";
         $statement = $dbConn->prepare($sql);
-        $statement->bindValue(':id_laboratorio', $input['idLab']);
-        $statement->bindValue(':Descripcion', $input['des']);
+        $statement->bindValue(':IdCliente', $input['IdCliente']);
+        $statement->bindValue(':total', $input['Total']);
               
         // bindAllValues($statement, $input,-1);
         $statement->execute();
         $postId = $dbConn->lastInsertId();
         if ($postId) {
-            $input['id'] = $postId;
+            $input['Id'] = $postId;
             header("HTTP/1.1 200 OK");
             echo json_encode($input);
         }
     } catch (Exception $e) {
         echo 'Excepción capturada: ',  $e->getMessage(), "\n";
     }
-    */
+    
 }
 if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
     /*

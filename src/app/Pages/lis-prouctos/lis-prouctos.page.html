@@ -1,9 +1,30 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>LisProuctos</ion-title>
+    <ion-buttons slot="start">
+      <ion-button autoHide="false" (click)="regresarBTN()">
+        <ion-icon size="large" name="arrow-round-back"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
+    <ion-title>Lista de Platos</ion-title>
   </ion-toolbar>
+  <ion-searchbar showCancelButton="focus" (keyup)="checkProductos($event)" cancelButtonText="Custom Cancel"></ion-searchbar>
 </ion-header>
 
 <ion-content>
-
+  <table style="width: 100%;">
+    <tr style="width: 100%;" *ngFor="let pro of listaProductos">
+      <td style="width: 100%;">
+        <ion-card style="width: 100%;" (click)="selecProd(pro)">
+        <ion-card-header>
+          <ion-card-subtitle>{{pro.Nombre}}</ion-card-subtitle>
+          <ion-card-title>{{pro.Precio}} </ion-card-title>
+        </ion-card-header>
+      
+       
+      </ion-card>
+    </td>
+     
+  </tr>
+  </table>
 </ion-content>

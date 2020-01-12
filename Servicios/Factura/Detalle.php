@@ -3,7 +3,7 @@ ob_start();
 include("../coneccion.php");
 $dbConn =  connect($db);
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    try {
+   /* try {
         if (isset($_GET['cod'])) {
             $sql = $dbConn->prepare("SELECT
             mv.codigo,
@@ -78,6 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     } catch (Exception $e) {
         echo 'Excepción capturada: ',  $e->getMessage(), "\n";
     }
+    */
 }
 
 
@@ -87,21 +88,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     try {
         //$input = $_POST;
         $input = (array) json_decode(file_get_contents('php://input'), TRUE);
-        $sql = "UPDATE
-        maecte
-    SET
-        obsercte01=:obs,
-        imagencte01=:img,
-        longitud01=:lon,
-        latitud01=:lat
-    WHERE 
-        codcte01=:cod";
+        $sql = "INSERT INTO `factura_detalle`(
+            `Id_Maestro`,
+            `Id_Plato`,
+            `Cantidad`
+        )
+        VALUES(:maestro,:plato,:cantidad )";
         $statement = $dbConn->prepare($sql);
-        $statement->bindValue(':obs', $input['obsercte01']);
-        $statement->bindValue(':img', $input['imagencte01']);
-        $statement->bindValue(':lon', $input['longitud01']);
-        $statement->bindValue(':lat', $input['latitud01']);
-        $statement->bindValue(':cod', $input['codigo']);
+        $statement->bindValue(':maestro', $input['Id_Maestro']);
+        $statement->bindValue(':plato', $input['Id']);
+        $statement->bindValue(':cantidad', $input['Cantidad']);
+        
         
         // bindAllValues($statement, $input,-1);
 

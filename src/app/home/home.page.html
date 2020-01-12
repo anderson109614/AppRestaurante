@@ -3,19 +3,32 @@
     <ion-title>
       Restaurante
     </ion-title>
+    <ion-buttons slot="end">
+      <a href="" (click)="Salir()">
+        <ion-button class="notification" autoHide="false">
+          <ion-icon size="large" name="power"></ion-icon>
+
+        </ion-button>
+      </a>
+
+
+    </ion-buttons>
   </ion-toolbar>
+
 </ion-header>
 
 <ion-content>
   <ion-card>
     <ion-item>
-      
+
       <ion-label>Datos del Cliente</ion-label>
-      <ion-button fill="outline" slot="end" (click)="selCliente()" ><ion-icon size='large' name="people"></ion-icon></ion-button>
+      <ion-button fill="outline" slot="end" (click)="selCliente()">
+        <ion-icon size='large' name="people"></ion-icon>
+      </ion-button>
     </ion-item>
-  
+
     <ion-card-content>
-          
+
       <ion-item>
         <ion-label position="stacked">Cedula</ion-label>
         <ion-input readonly="true" id="txtCedula"></ion-input>
@@ -34,22 +47,91 @@
       </ion-item>
     </ion-card-content>
   </ion-card>
+
+
+
+
   <ion-card>
     <ion-item>
-      
+
       <ion-label>Producto</ion-label>
-      <ion-button fill="outline" slot="end"><ion-icon size='large' name="pizza"></ion-icon></ion-button>
+      <ion-button fill="outline" slot="end" (click)="ListaProductos()">
+        <ion-icon size='large' name="pizza"></ion-icon>
+      </ion-button>
     </ion-item>
-  
+
     <ion-card-content>
-          
+
       <ion-item>
-        <ion-label position="stacked">Cedula</ion-label>
-        <ion-input readonly="true" id="txtCedula"></ion-input>
+        <ion-label position="fixed">Producto</ion-label>
+        <ion-input id="txtNomProducto" type="text" readonly="true"></ion-input>
       </ion-item>
-      
+      <ion-item>
+        <ion-label position="fixed">Cantidad</ion-label>
+        <ion-input id="txtCantidad" type="number" value="1"></ion-input>
+      </ion-item>
+
+      <ion-button shape="round" color="success" expand="full" (click)="AnadirALIsta()">Añadir</ion-button>
+
     </ion-card-content>
   </ion-card>
 
+  <ion-card>
+    <ion-item>
+
+      <ion-label>Productos Seleccionaddos</ion-label>
+
+    </ion-item>
+
+    <ion-card-content>
+
+      <table style="width: 100%;">
+
+        <tr style="width: 100%;">
+          <td style="width: 55%;">
+            Nombre
+          </td>
+          <td style="width: 15%;">
+            Cant.
+          </td>
+          <td style="width: 15%;">
+            Prec.
+          </td>
+          <td style="width: 15%;">
+            Sub.T
+          </td>
+        </tr>
+        <tr *ngFor="let profa of ListaProductosFactura">
+          <td>
+            {{profa.Nombre}}
+          </td>
+          <td>
+            {{profa.Cantidad}}
+          </td>
+          <td>
+            {{profa.Precio}}
+          </td>
+          <td>
+            {{profa.SubTotal}}
+          </td>
+          <td>
+            <ion-button shape="round" color="success" expand="full" (click)="EliminarLista(profa)">
+              <ion-icon name="trash"></ion-icon>
+            </ion-button>
+          </td>
+          
+          
+        </tr>
+      </table>
+
+      <ion-item>
+        <ion-label position="fixed">Total</ion-label>
+        <ion-input id="txtTotal" type="text"  readonly="true">{{total}}</ion-input>
+      </ion-item>
+
+      <ion-button shape="round" color="success" expand="full" (click)="GuardarFactura()">Guardar</ion-button>
+
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

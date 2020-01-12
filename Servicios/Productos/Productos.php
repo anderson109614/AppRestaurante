@@ -5,7 +5,7 @@ $dbConn =  connect($db);
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     try {
       
-            $sql = $dbConn->prepare("SELECT codtab as codigo, nomtab as NombreEstado FROM `maetab` WHERE `numtab` = '49' and codtab<>'' ");
+            $sql = $dbConn->prepare("SELECT * FROM `platos`");
 
            
             
