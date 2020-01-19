@@ -21,7 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $sql = $dbConn->prepare(" SELECT
             *
         FROM
-            `clientes`");
+            `clientes`
+        WHERE Estado=1");
                        
             $sql->execute();
             $sql->setFetchMode(PDO::FETCH_ASSOC);
@@ -36,7 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     try {
-        //$input = $_POST;
+         
+
+         
+                 //$input = $_POST;
         $input = (array) json_decode(file_get_contents('php://input'), TRUE);
         $sql = "INSERT INTO clientes(
             
@@ -44,7 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             Nombre,
             Apellido,
             Telefono,
-            Direccion
+            Direccion,
+            Estado
         )
         VALUES(
             
@@ -52,7 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             :Nombre,
             :Apellido,
             :Telefono,
-            :Direccion
+            :Direccion,
+            1
         )";
         $statement = $dbConn->prepare($sql);
         $statement->bindValue(':Cedula', $input['Cedula']);
@@ -69,6 +75,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header("HTTP/1.1 200 OK");
             echo json_encode($input);
         }
+         
+       
     } catch (Exception $e) {
         echo 'Excepción capturada: ',  $e->getMessage(), "\n";
     }

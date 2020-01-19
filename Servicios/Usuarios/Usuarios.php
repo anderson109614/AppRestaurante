@@ -47,15 +47,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         Apellido,
         Telefono,
         Direccion,
-        Contraseña
+        Contrasena
         
     FROM
         usuarios
     WHERE
           Cedula=:usuario
-     AND   Contraseña=:contrasena;");
+     AND   Contrasena=:contrasena;");
         $sql->bindValue(':usuario', $input['Cedula'] );
-        $sql->bindValue(':contrasena', $input['Contraseña'] );
+        $sql->bindValue(':contrasena', $input['Contrasena'] );
         $sql->execute();
           $sql->setFetchMode(PDO::FETCH_ASSOC);
           header("HTTP/1.1 200 OK");
